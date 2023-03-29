@@ -1,0 +1,22 @@
+{
+  "name": "djs-template",
+  "description": "",
+  "version": "0.1.0",
+  "author": "",
+  "license": "MIT",
+  "main": "build/start.js",
+  "scripts": {
+    "start": "node build/start.js",
+    "build": "tsc"
+  },
+  "packageManager": "pnpm@7.25.1",
+  "dependencies": {
+    "discord.js": "^14.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "discord-api-types": "^0.37.37",
+    "dotenv": "^16.0.3",
+    "typescript": "^5.0.2"
+  }
+}
