@@ -6,6 +6,7 @@
   "license": "MIT",
   "main": "build/start.js",
   "scripts": {
+    "dev": "ts-node-dev src/start.ts",
     "start": "node build/start.js",
     "build": "tsc"
   },
