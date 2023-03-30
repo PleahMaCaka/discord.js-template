@@ -1,15 +1,15 @@
 import { Client } from "../custom/Client"
 import { PrefixCommand } from "../interfaces/PrefixCommand"
-import { readdirSync } from "fs"
 import { join } from "path"
+import glob from "glob"
 
 module.exports = (client: Client) => {
 
-    const prefixCommands: Array<PrefixCommand> = []
+    const prefixCommands: PrefixCommand[] = []
 
     const prefixCommandPath = join(__dirname, "../commands")
 
-    readdirSync(prefixCommandPath).forEach(file => {
+    glob.sync("src/commands/**/*.{ts,js}").forEach(file => {
         if (!(file.endsWith(".ts") || file.endsWith(".js"))) return
 
         const cmd: PrefixCommand = require(`${prefixCommandPath}/${file}`).default
