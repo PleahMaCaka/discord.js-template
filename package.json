@@ -1,8 +1,8 @@
 {
-  "name": "djs-template",
-  "description": "",
+  "name": "aurora",
+  "description": "AIO Discord Bot",
   "version": "0.1.0",
-  "author": "",
+  "author": "PleahMaCaka",
   "license": "MIT",
   "main": "build/start.js",
   "scripts": {
