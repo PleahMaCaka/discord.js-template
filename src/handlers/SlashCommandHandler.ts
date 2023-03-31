@@ -30,6 +30,6 @@ module.exports = async (client: Client) => {
         await rest.put(Routes.applicationGuildCommands(client.user!.id, guild.id), {
             body: client.slashCommands.map(command => command.command.toJSON())
         })
-        Logger.info(`[/] Successfully loaded ${client.slashCommands.size} command(s)`)
     })
+    Logger.info(`[/] Successfully loaded ${client.slashCommands.size} command(s)`)
 }
