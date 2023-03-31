@@ -27,9 +27,9 @@ module.exports = async (client: Client) => {
 
     client.guilds.cache.forEach(async guild => {
         guild.commands.set([]) // remove all
-        // await rest.put(Routes.applicationGuildCommands(client.user!.id, guild.id), {
-            // body: client.slashCommands.map(command => command.command.toJSON())
-        // })
+        await rest.put(Routes.applicationGuildCommands(client.user!.id, guild.id), {
+            body: client.slashCommands.map(command => command.command.toJSON())
+        })
         Logger.info(`[/] Successfully loaded ${client.slashCommands.size} command(s)`)
     })
 }
