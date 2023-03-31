@@ -1,6 +1,6 @@
 import { PrefixCommand } from "../interfaces/PrefixCommand"
 
-const command: PrefixCommand = {
+export const command: PrefixCommand = {
     name: "ping",
     execute: async (message) => {
         message.channel.send("pong")

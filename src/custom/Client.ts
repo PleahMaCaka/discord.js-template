@@ -2,6 +2,7 @@ import { Client as ClientJS, ClientOptions, Collection, Message } from "discord.
 import { readdirSync } from "fs"
 import { join } from "path"
 import { PrefixCommand } from "../interfaces/PrefixCommand"
+import Logger from "@pleahmacaka/logger"
 
 export class Client extends ClientJS {
 
@@ -22,7 +23,7 @@ export class Client extends ClientJS {
         const handlerPath = join(__dirname, "../handlers")
 
         readdirSync(handlerPath).forEach(handler => {
-            console.log(`[H] ${handler} loaded!`)
+            Logger.info(`[H] ${handler} loaded!`)
             require(`${handlerPath}/${handler}`)(this)
         })
     }
