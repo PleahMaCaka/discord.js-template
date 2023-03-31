@@ -18,7 +18,6 @@ export class Client extends ClientJS {
 
         this.once("ready", () => {
             this.loadHandlers()
-            this.autoExecutor()
         })
     }
 
@@ -29,37 +28,6 @@ export class Client extends ClientJS {
             Logger.info(`[H] ${handler} loaded!`)
             require(`${handlerPath}/${handler}`)(this)
         })
-    }
-
-    public autoExecutor() {
-        this.on("messageCreate", (message: Message) => {
-            const args = message.content.substring(this.defaultPrefix.length).split(" ")
-            const command = this.prefixCommands.get(args[0])
-            if (command) command.execute(message, args)
-        })
-        this.on("interactionCreate", (interaction: Interaction) => {
-            if (!interaction.isChatInputCommand()) return
-            const command = this.slashCommands.get(interaction.commandName)
-
-            if (!command) return
-
-            command.execute(interaction as CommandInteraction)
-        })
-        this.on("interactionCreate", (interaction: Interaction) => {
-            if (!interaction.isAutocomplete()) return
-            const command = this.slashCommands.get(interaction.commandName)
-            try {
-                if (!command?.autocomplete) return
-                command.autocomplete(interaction)
-            } catch (error) {
-                console.error(error)
-            }
-        })
-        // this.on("interactionCreate", (interaction: Interaction) => {
-        //     if (!interaction.isAutocomplete()) return
-        //     const command = this.slashCommands.get(interaction.commandName
-            
-        // })
     }
 
 }
