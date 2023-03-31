@@ -13,7 +13,7 @@ module.exports = (client: Client) => {
     glob.sync(`${prefixCommandPath}/**/*.prefix.{ts,js}`).forEach(file => {
         if (!(file.endsWith(".ts") || file.endsWith(".js"))) return
 
-        const cmd: PrefixCommand = require(`${file}`).default
+        const cmd: PrefixCommand = require(file).default
         Logger.info(`[${client.defaultPrefix}] ${cmd.name} loaded!`)
 
         client.prefixCommands.set(cmd.name, cmd)

@@ -17,7 +17,7 @@ module.exports = async (client: Client) => {
         if (!(file.endsWith(".ts") || file.endsWith(".js")))
             return
 
-        const cmd: SlashCommand = require(`${file}`).default
+        const cmd: SlashCommand = require(file).default
         Logger.info(`[/] ${cmd.command.name} loaded!`)
 
         client.slashCommands.set(cmd.command.name, cmd)
