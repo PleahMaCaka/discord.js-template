@@ -25,9 +25,9 @@ module.exports = async (client: Client) => {
 
     const rest = new REST({ version: "10" }).setToken(process.env.TOKEN!) // TOOD override login
 
-    client.guilds.cache.forEach(async guild => {
+    client.guilds.cache.forEach(guild => {
         guild.commands.set([]) // remove all
-        await rest.put(Routes.applicationGuildCommands(client.user!.id, guild.id), {
+        rest.put(Routes.applicationGuildCommands(client.user!.id, guild.id), {
             body: client.slashCommands.map(command => command.command.toJSON())
         })
     })

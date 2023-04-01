@@ -1,4 +1,4 @@
-import { Client as ClientJS, ClientOptions, Collection, CommandInteraction, Integration, Interaction, Message } from "discord.js"
+import { Client as ClientJS, ClientOptions, Collection } from "discord.js"
 import { readdirSync } from "fs"
 import { join } from "path"
 import { PrefixCommand } from "../interfaces/PrefixCommand"
