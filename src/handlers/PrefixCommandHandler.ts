@@ -10,7 +10,7 @@ module.exports = (client: Client) => {
 
     Logger.info(`[${client.defaultPrefix}] Loading prefix commands from [ ${prefixCommandPath} ] ...`)
 
-    glob.sync(`${prefixCommandPath}/**/*.prefix.{ts,js}`).forEach(file => {
+    glob.sync(`${prefixCommandPath}/**/*.prefix.{ts,js}`.replace(/\\/g, "/")).forEach(file => {
         if (!(file.endsWith(".ts") || file.endsWith(".js"))) return
 
         const cmd: PrefixCommand = require(file).default

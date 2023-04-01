@@ -10,7 +10,7 @@ module.exports = (client: Client) => {
 
     Logger.info(`[E] Loading events from [ ${eventPath} ] ...`)
 
-    glob.sync(`${eventPath}/**/*.{ts,js}`).forEach(file => {
+    glob.sync(`${eventPath}/**/*.{ts,js}`.replace(/\\/g, "/")).forEach(file => {
         if (!(file.endsWith(".ts") || file.endsWith(".js"))) return
 
         const event: ClientEvent = require(file).default

@@ -11,11 +11,9 @@ module.exports = async (client: Client) => {
 
     Logger.info(`[/] Loading slash commands from [ ${slashCommandPath} ] ...`)
 
-    glob.sync(`${slashCommandPath}/**/*.{ts,js}`).forEach(file => {
-        if (file.split(".").includes("prefix"))
-            return
-        if (!(file.endsWith(".ts") || file.endsWith(".js")))
-            return
+    glob.sync(`${slashCommandPath}/**/*.{ts,js}`.replace(/\\/g, "/")).forEach(file => {
+        if (file.split(".").includes("prefix")) return
+        if (!(file.endsWith(".ts") || file.endsWith(".js"))) return
 
         const cmd: SlashCommand = require(file).default
         Logger.info(`[/] ${cmd.command.name} loaded!`)
