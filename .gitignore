@@ -6,3 +6,6 @@
 # etc
 build
 node_modules
+
+**/*.js
+**/*.js.map

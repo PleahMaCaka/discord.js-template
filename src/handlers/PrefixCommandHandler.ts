@@ -1,22 +1,24 @@
 import { Client } from "../custom/Client"
-import { PrefixCommand } from "../interfaces/PrefixCommand"
 import { join } from "path"
-import glob from "glob"
 import Logger from "@pleahmacaka/logger"
+import type { PrefixCommand } from "../interfaces/PrefixCommand"
+import glob from "glob"
 
-module.exports = (client: Client) => {
+export default async (client: Client) => {
 
     const prefixCommandPath = join(__dirname, "../commands")
 
     Logger.info(`[${client.defaultPrefix}] Loading prefix commands from [ ${prefixCommandPath} ] ...`)
 
-    glob.sync(`${prefixCommandPath}/**/*.prefix.{ts,js}`.replace(/\\/g, "/")).forEach(file => {
-        if (!(file.endsWith(".ts") || file.endsWith(".js"))) return
+    for (const file of glob.sync(`${prefixCommandPath}/**/*.prefix.{ts,js}`.replace(/\\/g, "/"))) {
+        if (!(file.endsWith(".ts") || file.endsWith(".js"))) continue
 
-        const cmd: PrefixCommand = require(file).default
+        const { default: obj } = (await import("file://" + file)).default
+        const cmd = obj as PrefixCommand
+
         Logger.info(`[${client.defaultPrefix}] ${cmd.name} loaded!`)
 
         client.prefixCommands.set(cmd.name, cmd)
-    })
+    }
 
 }
