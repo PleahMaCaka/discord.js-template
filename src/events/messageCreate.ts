@@ -5,7 +5,6 @@ import { client } from "../start"
 const event: ClientEvent = {
     event: "messageCreate",
     execute: (message: Message) => {
-        console.log(message.content)
         if (!message.content.startsWith(client.defaultPrefix)) return
 
         const args = message.content.substring(client.defaultPrefix.length).split(" ")
